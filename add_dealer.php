@@ -1,6 +1,7 @@
 <?php 
 include 'db.php';
 
+
  if(isset($_POST['submit']))
  {
 
@@ -26,7 +27,7 @@ include 'db.php';
 
         echo "<script>alert('Added');</script>";
       }
-      header("location: view_dealers.php");
+      header("location: verifydeal.php?email=$email");
     }
 ?>
 <!DOCTYPE html>
@@ -47,7 +48,7 @@ include 'db.php';
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include 'sidebar.php'; ?>
+  <?php include 'sample.php'; ?>
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -116,7 +117,7 @@ include 'db.php';
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="file" required>
-                        <label class="custom-file-label" for="exampleInputFile"></label>
+                        <label class="custom-file-label" for="exampleInputFile">Upload License</label>
                       </div>
                     </div>
                   </div>

@@ -2,7 +2,8 @@
 include 'db.php';
 
 $su_id=$_GET['b_id'];
-$result=mysqli_query($conn,"SELECT * FROM `dealer` join login on `dealer`.Login_id=login.Login_id where login.Role=2");
+//$result=mysqli_query($conn,"SELECT * FROM `dealer` join login on `dealer`.Login_id=login.Login_id where login.Role=2");
+$result=mysqli_query($conn,"SELECT dealer.*,login.* from dealer,login WHERE dealer.Login_id=login.Login_id and login.Login_id='$su_id'");
 
 if(isset($_POST['submit']))
  {
@@ -40,7 +41,7 @@ if(isset($_POST['submit']))
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include 'sidebar.php'; ?>
+  <?php include 'sample.php'; ?>
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

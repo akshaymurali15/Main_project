@@ -31,7 +31,7 @@ $result=mysqli_query($conn,"SELECT * FROM `dealer` join login on `dealer`.Login_
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include 'sidebar.php'; ?>
+  <?php include 'sample.php'; ?>
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -68,18 +68,25 @@ $result=mysqli_query($conn,"SELECT * FROM `dealer` join login on `dealer`.Login_
                   </tr>
                   </thead>
                   <tbody>
-                  <?php while($row=mysqli_fetch_assoc($result)){ ?>
+                  <?php while($row=mysqli_fetch_assoc($result)){ 
+                    $emuul= $row['Email'];?>
+                    
                   <tr>
                     <td><?php echo $row['Name'];?></td>
-                    <td><?php echo $row['Mobile'];?></td>
                     <td><?php echo $row['Email'];?></td>
+                    <td><?php echo $row['Mobile'];?></td>
                     <td> <?php echo $row['Address'];?></td>
                     <td> <?php echo $row['License_no'];?></td>
-                    <td><img src="profile/<?php echo $row['License_Upload'];?>" width="70" height="80"></td>
+                    <td><img src="profile/<?php echo $row['License_Upload'];
+                    $emuul= $row['Email'];?>" width="70" height="80"></td>
                     <td> <a href="edit_dealer.php?b_id=<?php echo $row['Login_id'];?>">
                         <input type="button" class="btn btn-success" value="Edit details"></a>
-                        <a href="delete_dealer.php?b_id=<?php echo $row['Login_id'];?>">
-                        <input type="button" class="btn btn-danger" value="Block"></a></td>
+                        <?php if ($row['Status'] == 'BLOCKED') { ?>
+                    <a href="enabledisable.php?a_id=<?php echo $row['Login_id'];?>&&ss=BLOCKED&&emmml=<?php echo $emuul;?>"><Button type="submit" class="btn btn-primary">ENABLE</Button></a>
+                    <?php } else { ?>  
+                    <a href="enabledisable.php?a_id=<?php echo $row['Login_id'];?>&&ss=ACCEPTED && eul=<?php echo $emuul;?>"><Button type="submit" class="btn btn-primary">DISABLE</Button></a>
+                    <?php } ?>
+                        
                   </tr>
                   <?php } ?>
                   </tbody>
@@ -101,12 +108,50 @@ $result=mysqli_query($conn,"SELECT * FROM `dealer` join login on `dealer`.Login_
     <!-- Main Footer -->
     <footer class="main-footer">
       <strong>Copyright &copy; 2022 <a href="#">BARELL OF BOOKS</a>.</strong>
-      All rights reserved.
+      
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.1.0
+        <b></b>
       </div>
     </footer>
   </div>
+  <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<!-- <script src="plugins/pdfmake/pdfmake.min.js"></script> -->
+<!-- <script src="plugins/pdfmake/vfs_fonts.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script> -->
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->

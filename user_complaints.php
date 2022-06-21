@@ -1,8 +1,8 @@
 <?php 
- include 'sidebar.php'; 
+ include 'sample.php'; 
 $uid=$_SESSION['UserID'];
 include 'db.php';
-$result=mysqli_query($conn,"SELECT signup.Fullname,complaint.* from signup,complaint WHERE signup.Login_id=complaint.Login_id");
+$result=mysqli_query($conn,"SELECT signup.*,complaint.* from signup,complaint WHERE signup.Login_id=complaint.Login_id");
 
 
  ?>
@@ -13,6 +13,10 @@ $result=mysqli_query($conn,"SELECT signup.Fullname,complaint.* from signup,compl
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BARELL OF BOOKS</title>
   <link rel="stylesheet" type="text/css" href="adminlte.css?v=<?php echo time(); ?>">
+  
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <?php include 'db.php'; ?>
@@ -61,9 +65,12 @@ $result=mysqli_query($conn,"SELECT signup.Fullname,complaint.* from signup,compl
                   <thead>
                   <tr>
                     
-                    <th>Name</th>
-                  <th>Complaint</th>
-                    <th> Time</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                  <th>COMPLAINT</th>
+                    <th> TIME</th>
+                    <th>REPLY</th>
+                    
                     
                   </tr>
                   </thead>
@@ -71,8 +78,10 @@ $result=mysqli_query($conn,"SELECT signup.Fullname,complaint.* from signup,compl
                   <?php while($row=mysqli_fetch_assoc($result)){ ?>
                   <tr>
                   <td><?php echo $row['Fullname'];?></td>
+                  <td><?php echo $row['Email'];?></td>
                     <td><?php echo $row['Content'];?></td>
                     <td><?php echo $row['time'];?></td>
+                    <td><a href="adminreply.php?id=<?php echo $row['comp_id'];?>"class="btn btn-primary">REPLY</a></td>
                   </tr>
                   <?php } ?>
                   </tbody>
@@ -101,6 +110,44 @@ $result=mysqli_query($conn,"SELECT signup.Fullname,complaint.* from signup,compl
       </div>
     </footer>
   </div>
+  <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<!-- <script src="plugins/pdfmake/pdfmake.min.js"></script> -->
+<!-- <script src="plugins/pdfmake/vfs_fonts.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script> -->
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->

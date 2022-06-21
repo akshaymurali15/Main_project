@@ -22,6 +22,9 @@ $as=mysqli_query($conn,"SELECT * FROM `cart`");
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BARELL OF BOOKS</title>
   <link rel="stylesheet" type="text/css" href="adminlte.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
   <?php include 'db.php'; ?>
 </head>
@@ -77,7 +80,9 @@ $as=mysqli_query($conn,"SELECT * FROM `cart`");
                   <th>BOOK ID</th>
                     <th>BOOK NAME</th>
                     <th>IMAGE</th>
+                    <th>QUANTITY</th>
                     <th>PRICE</th>
+                    <th>TOTAL PRICE</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -85,28 +90,43 @@ $as=mysqli_query($conn,"SELECT * FROM `cart`");
 
                   <?php
                   $rr=mysqli_query($conn,"SELECT * FROM `cart` join `books` on `cart`.Book_id=`books`.Book_id where `cart`.Login_id='$uid'");
-                  while($er=mysqli_fetch_assoc($rr)){ ?>
+                 $total=0;
+                 while($er=mysqli_fetch_assoc($rr)){ 
+                 $qua=$er['quantity'];
+                 $pri=$er['Price'];
+                 $total = $qua*$pri ?>
                   <tr>
                   <td><?php echo $er['Book_id'];?></td>
                     <td><?php echo $er['Book_name'];?></td>
                     <td><img src="bookimages/<?php echo $er['Image'];?>"width="70" height="80"></td>
-                    <td> ₹ <?php echo $er['Price'];?></td>
+                    <td><?php echo $qua;?></td>
+                    <td> ₹ <?php echo $pri;?></td>
+                    <td>₹ <?php echo $total;?></td>
                    <td><a href="cart2.php?id=<?php echo $er['cart_id']; ?>">Remove</a></td>
+                   
                   </tr>
                   <?php } ?>
                   </tbody>
                   <?php
                     //$cid = $rr['cart_id'];
-                    $sqla="SELECT SUM(Price) AS summ FROM cart where Login_id='$uid' ";
+                    $sqla="SELECT SUM(Price*quantity) AS summ FROM cart where Login_id='$uid' ";
                     $cres = mysqli_query($conn,$sqla);
                     $cres1=mysqli_fetch_array($cres);
                     $sum = $cres1['summ'];
+                    $sqlv="SELECT SUM(quantity) AS qnty FROM cart where Login_id='$uid' ";
+                    $crev = mysqli_query($conn,$sqlv);
+                    $crev1=mysqli_fetch_array($crev);
+                    $qty = $crev1['qnty'];
+
                   ?>
                   <th>Total</th>
                   <th></th> 
                   <th></th>
+                  <th><?php echo "$qty" ?></th>
+
                   
-                  <th><?php echo "$sum" ?></th>
+                  <th>₹<?php echo "$sum" ?></th>
+                  <th></th>
                   <th><button><a href="pay.php"> Place order</a></button></th>
                   <tfoot>
                   <tr>
@@ -149,6 +169,40 @@ $as=mysqli_query($conn,"SELECT * FROM `cart`");
       </div>
     </footer>
   </div>
+  <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+
+
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->

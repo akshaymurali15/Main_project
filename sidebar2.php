@@ -10,8 +10,8 @@ $rol=mysqli_query($conn,"SELECT * FROM login WHERE Login_id='$uid'");
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="dealer_dashboard.php" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="BRS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">BRS Dealer</span>
+      <img src="122.jpg" alt="BRS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">BARELL OF BOOKS</span>
     </a>
 
     <!-- Sidebar -->
@@ -39,11 +39,11 @@ $rol=mysqli_query($conn,"SELECT * FROM login WHERE Login_id='$uid'");
                   <p>Dashboard</p>
                 </a>
               </li>
-          <li class="nav-item">
-            <a href="add_books.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <li class="nav-item">
+            <a href="dealerbooks.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
               <p>
-                Add Books
+                BOOKS
               </p>
             </a>
           </li>
@@ -51,7 +51,31 @@ $rol=mysqli_query($conn,"SELECT * FROM login WHERE Login_id='$uid'");
             <a href="manage_orders.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Manage Orders
+                USER ORDER's
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="adddelivery.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                ADD DELIVERY PERSON
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="viewdeli.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                VIEW DELIVERY PERSON
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="viewdeli.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                CONTACT ADMIN
               </p>
             </a>
           </li>

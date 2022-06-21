@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="about.css">
+        <link rel="stylesheet" type="text/css" href="MAIN.css">
 
     </head>
     <body>
+    <div class="logo">
+        <a href="#"><img src="122.jpg"></a>
         <section class="ABOUT">
+        <nav>
+              
+              <ul>
+                  <li><a href="main.php">HOME</a></li>
+                  <!-- <li><a href="about.php">ABOUT US</a></li> -->
+                  <li><a href="contact.php">CONTACT</a></li>
+                  <li><a href="signup.php">SIGNUP</a></li>
+                  <li><a href="LOGIN.php">LOGIN</a></li>
+              </ul>
+          </nav>
             <div class="main">
                 
                 <div class="about-text">
-                    <h1>ABOUT US</h1>
-                    <p>Bookstores are special places, full of the smell of new books, browsing the shelves for your next great read, booksellers you know you can count on for great, personal recommendations, a community you know will be open and welcoming.We know that booksellers help readers discover and share the magic of books. They are dedicated to helping you find the book you need--the book that could change your life. When they recommend a book to you, they are genuinely looking to make a connection and create an experience for you. 
-                        We want to give you a way to celebrate your favorite bookstore with with other book lovers: just use the #loveyourbookstore hashtag and post a photo, quote, or story about your favorite bookstore.​The Love Your Bookstore initiative is the brainchild of booklover Dominique Raccah, the Publisher and CEO of Sourcebooks and PW's Publishing Person of the Year. </p>
-                        <button type="button"><a href="main.php">Let's Start</button></a>
+                    <h1>ABOUTUS</h1>
+                    <p>VERY GOOD PLACE TO EXPLORE</p>
+                        <!-- <button type="button"><a href="main.php">Let's Start</button></a> -->
 
                 </div>
             </div>

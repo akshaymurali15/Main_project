@@ -96,7 +96,7 @@ img {vertical-align: middle;}
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include 'sidebar.php'; ?>
+  <?php include 'sample.php'; ?>
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -160,7 +160,7 @@ img {vertical-align: middle;}
       <strong>Copyright &copy; 2022 <a href="#">BARELL OF BOOKS</a>.</strong>
       
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.1.0
+        <b></b> 
       </div>
     </footer>
   </div>

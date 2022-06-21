@@ -1,7 +1,7 @@
 <?php 
 include 'db.php';
 
-$result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id = user.Login_id where login.Status !='REJECTED'");
+$result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id = user.Login_id where login. STATUS IN ('ACCEPTED','BLOCKED');");
 // SELECT * FROM `signup` join login on signup.Login_id=login.Login_id
  ?>
 <!DOCTYPE html>
@@ -10,6 +10,10 @@ $result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
+  <link rel="stylesheet" type="text/css" href="adminlte.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" type="text/css" href="adminlte.css?v=<?php echo time(); ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
@@ -21,7 +25,7 @@ $result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id 
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include 'sidebar.php'; ?>
+  <?php include 'sample.php'; ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -60,18 +64,21 @@ $result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id 
                   </tr>
                   </thead>
                   <tbody>
-                  <?php while($row=mysqli_fetch_assoc($result)){ ?>
+                  <?php while($row=mysqli_fetch_assoc($result)){ 
+                     $emul= $row['Email'];
+                    ?>
                   <tr>
                     <td><?php echo $row['Name'];?></td>
                     <td><?php echo $row['Mobile'];?></td>
                     <td><?php echo $row['Email'];?></td>
                     <td><?php echo $row['Address'];?></td>
                     <td><?php echo $row['Aadhaar_no'];?></td>
-                    <td><img src="image/<?php echo $row['Aadhaar_upload'];?>" width="80" height="40"></td>
+                    <td><img src="image/<?php echo $row['Aadhaar_upload'];
+                    $emul= $row['Email'];?>" width="80" height="40"></td>
                     <td> <?php if ($row['Status'] == 'BLOCKED') { ?>
-                    <a href="blockunblock.php?a_id=<?php echo $row['Login_id'];?>&&ss=BLOCKED"><Button type="submit" class="btn btn-primary">UNBLOCK</Button></a>
+                    <a href="blockunblock.php?a_id=<?php echo $row['Login_id'];?>&&ss=BLOCKED&&emmm=<?php echo $emul;?>"><Button type="submit" class="btn btn-primary">UNBLOCK</Button></a>
                     <?php } else { ?>  
-                    <a href="blockunblock.php?a_id=<?php echo $row['Login_id'];?>&&ss=ACCEPTED"><Button type="submit" class="btn btn-primary">BLOCK</Button></a>
+                    <a href="blockunblock.php?a_id=<?php echo $row['Login_id'];?>&&ss=ACCEPTED && emul=<?php echo $emul;?>"><Button type="submit" class="btn btn-primary">BLOCK</Button></a>
                     <?php } ?>
                       
                       </td>
@@ -97,9 +104,9 @@ $result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0
+      <b></b>
     </div>
-    <strong>Copyright &copy; 2022 <a href="https://adminlte.io">BARELL OF BOOKS</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022 <a href="https://adminlte.io">BARELL OF BOOKS</a>.</strong>
   </footer>
 
   <!-- Control Sidebar -->
@@ -108,6 +115,8 @@ $result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id 
   </aside>
   <!-- /.control-sidebar -->
 </div>
+
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->
@@ -122,6 +131,44 @@ $result=mysqli_query($conn,"SELECT * FROM `user` join `login` on login.Login_id 
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<!-- <script src="plugins/pdfmake/pdfmake.min.js"></script> -->
+<!-- <script src="plugins/pdfmake/vfs_fonts.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script> -->
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <!-- Page specific script -->
 </body>
 </html>

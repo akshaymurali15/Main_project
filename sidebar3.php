@@ -66,6 +66,22 @@ $sql = mysqli_query($conn,"SELECT * from `login` where Login_id='$uid'");
             </a>
           </li>
           <li class="nav-item">
+            <a href="viewrep.php" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 ADMIN's REPLY
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="proupd.php?id=<?= $uid ?>" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 UPDATE PROFILE
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="Logout.php" class="nav-link">
               <i class="nav-icon fas fa-reply"></i>
               <p>

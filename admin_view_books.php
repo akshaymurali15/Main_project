@@ -30,7 +30,7 @@ $result=mysqli_query($conn,"SELECT * FROM `books` JOIN `book-type` ON `book-type
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include 'sidebar.php'; ?>
+  <?php include 'sample.php'; ?>
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -38,7 +38,7 @@ $result=mysqli_query($conn,"SELECT * FROM `books` JOIN `book-type` ON `book-type
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">View Books</h1>
+            <h1 class="m-0">VIEW BOOKS</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -60,7 +60,7 @@ $result=mysqli_query($conn,"SELECT * FROM `books` JOIN `book-type` ON `book-type
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                  <th>BOOK ID</th>
+                  <!-- <th>BOOK ID</th> -->
                     <th>BOOK NAME</th>
                     <th>CATEGORY</th>
                     <th>PRICE</th>
@@ -73,7 +73,7 @@ $result=mysqli_query($conn,"SELECT * FROM `books` JOIN `book-type` ON `book-type
                   <tbody>
                   <?php while($row=mysqli_fetch_assoc($result)){ ?>
                   <tr>
-                  <td><?php echo $row['Book_id'];?></td>
+                  <!-- <td><?php echo $row['Book_id'];?></td> -->
                     <td><?php echo $row['Book_name'];?></td>
                     <td><?php echo $row['Type_name'];?></td>
                     <td> ₹ <?php echo $row['Price'];?></td>
@@ -108,9 +108,9 @@ $result=mysqli_query($conn,"SELECT * FROM `books` JOIN `book-type` ON `book-type
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0
+      <b></b>
     </div>
-    <strong>Copyright &copy; 2022 <a href="https://adminlte.io">BARELL OF BOOKS</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022 <a href="https://adminlte.io">BARELL OF BOOKS</a>.</strong>
   </footer>
 
   <!-- Control Sidebar -->

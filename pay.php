@@ -68,7 +68,7 @@ include 'db.php';
 <?php 
 include_once 'sidebar3.php'; 
 $uid=$_SESSION['UserID'];
-$csql="SELECT SUM(Price) AS pricesum FROM cart WHERE Login_id=$uid";
+$csql="SELECT SUM(Price*quantity) AS pricesum FROM cart WHERE Login_id=$uid";
 $psl = mysqli_query($conn,$csql);
 $psql = mysqli_fetch_assoc($psl);
 $sum=$psql["pricesum"]

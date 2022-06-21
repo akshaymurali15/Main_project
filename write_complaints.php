@@ -50,7 +50,7 @@ if($sq){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Add Complaint</h1>
+            <h1 class="m-0">COMPLAINTS</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -71,7 +71,7 @@ if($sq){
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Enter below fields</h3>
+                <h3 class="card-title">GIVE YOUR COMPLAINT's</h3>
               </div>
 
     <form method="post">
@@ -81,8 +81,8 @@ if($sq){
                     <input type="text" class="form-control" name="exampleInputName1" placeholder="Enter complaint" style="height:200px;"></textarea>
                   </div>
                       <div class="input-group-append">
-                        <input type="submit" class="btn btn-success" style="margin-left:250px;" value="Add Complaint" name="submit">
-                        <input type="reset" class="btn btn-danger" style="margin-left:50px;" value="Reset">
+                        <input type="submit" class="btn btn-success" style="margin-left:250px;" value="SEND" name="submit">
+                        <input type="reset" class="btn btn-danger" style="margin-left:50px;" value="RESET">
                       </div>
                     </div>
                   </div>

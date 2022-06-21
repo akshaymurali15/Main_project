@@ -21,15 +21,15 @@ if(isset($_POST['btn_submit'])){
                 }
                 else if($r['Role']=='Dealer'){
                     $_SESSION['UserID']=$r['Login_id'];
-                       header("location:dealer_dashboard.php");
+                       header("location:dealdash.php");
                    }
-                   else if($r['Role']=='3'){
+                   else if($r['Role']=='distributor'){
                     $_SESSION['UserID']=$r['Login_id'];
-                       header("location:dealer_dashboard.php");
+                       header("location:disdash.php");
                    }
-                   else if($r['Role']=='4'){
+                   else if($r['Role']=='delivery'){
                     $_SESSION['UserID']=$r['Login_id'];
-                       header("location:dealer_dashboard.php");
+                       header("location:delidash.php");
                    }
     
                 else{
@@ -46,7 +46,7 @@ if(isset($_POST['btn_submit'])){
     }
 }
     else{
-        echo "<script>('Invalid user');</script>";
+        echo "<script>alert('Invalid user');</script>";
     }
         
 
@@ -80,12 +80,13 @@ if(isset($_POST['btn_submit'])){
         <input type="text" name="urnm" placeholder="USERNAME" autocomplete="off">
         <span id="urn" style="color:white"></span>
         </div>
+        <div class="id" id="uname"></div>
         <div class="flex">
         <label>PASSWORD-</label>
         <input type="password" name="pswd" placeholder="PASSWORD" autocomplete="off">
-        <span id="ords" style="color:blue"></span>
+        <span id="ords" style="color:white"></span>
         </div>
-
+        <div class="id" id="uname"></div>
         <input type="submit" name="btn_submit" value="LOGIN">
         <nav>
             

@@ -14,8 +14,8 @@
               
               <ul>
                   <li><a href="">HOME</a></li>
-                  <li><a href="about.php">ABOUTUS</a></li>
-                  <li><a href="">CONTACT</a></li>
+                  <li><a href="about.php">ABOUT US</a></li>
+                  <li><a href="contact.php">CONTACT</a></li>
                   <li><a href="signup.php">SIGNUP</a></li>
                   <li><a href="LOGIN.php">LOGIN</a></li>
               </ul>

@@ -16,6 +16,16 @@ $result=mysqli_query($conn,"SELECT * FROM `books`where book_id='$bo_id'");
   <link rel="stylesheet" type="text/css" href="adminlte.css?v=<?php echo time(); ?>">
 
   <?php include 'db.php'; ?>
+  <style>
+    .nums{
+      margin:20px 0 -10px 20px;
+
+    }
+    .nums input{
+      width: 120px;
+      border-color:blue ;
+    }
+  </style>
 </head>
 <!--
 `body` tag options:
@@ -31,7 +41,8 @@ if(isset($_POST['cart'])){
 $name = $_POST['bname'];
 $boid = intval($_POST['b_id']);
 $pri = $_POST['bprice'];
-$qw =mysqli_query($conn,"INSERT INTO `cart`(`Book_name`, `Book_id`, `Price`,`Login_id`) VALUES ('$name','$boid','$pri','$uid')");
+$qty = $_POST['qty'];
+$qw =mysqli_query($conn,"INSERT INTO `cart`(`Book_name`, `Book_id`,`quantity`, `Price`,`Login_id`) VALUES ('$name','$boid','$qty','$pri','$uid')");
 header("location:cart.php");
 }
 ?>
@@ -83,7 +94,11 @@ header("location:cart.php");
                           <h5><b>Author: </b> <?php echo $row['Author_name']; ?> <br>
                           <b>Story Line:</b><div style="margin:-23px 0 0 100px;"><?php echo $row['description'];?></div></h5>
                         <!-- <a href="book.php?b_id=<?php echo $row['Book_id'];?>"> -->
+                        <div class="nums">
+                          <input type="number" class="" name="qty" min=1 max=5 required value="1">
+                        </div>
                         <input type="submit" class="btn btn-primary" name="cart" style="margin-left:20px; margin-top:30px;" value="ADD TO CART">
+                        
                         <input type="hidden" name="bname" value="<?php echo $row['Book_name'];?> ">
                         <input type="hidden" name="b_id" value="<?php echo $row['Book_id'];?>">
                         <input type="hidden" name="bprice" value="<?php echo $row['Price'];?>">

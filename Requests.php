@@ -32,7 +32,7 @@ $result=mysqli_query($conn,"SELECT * FROM `signup` join login on signup.Login_id
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include 'sidebar.php'; ?>
+  <?php include 'sample.php'; ?>
     <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -63,12 +63,13 @@ $result=mysqli_query($conn,"SELECT * FROM `signup` join login on signup.Login_id
                     <th>AADHAAR_NO</th>
                     <th>AADHAAR_UPLOAD</th>
                     
-                    <th>Action</th>
+                    <th>ACTION</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php while($row=mysqli_fetch_assoc($result)){ 
                     $imgurl='image/'.$row['Aadhaar_Upload'];
+                    $email= $row['Email'];
                     ?>
                   <tr>
                     <td><?php echo $row['Fullname'];?></td>
@@ -76,8 +77,8 @@ $result=mysqli_query($conn,"SELECT * FROM `signup` join login on signup.Login_id
                     <!-- <td><img src=<?php echo $imgurl ?>width="80" height="40"></td> -->
                     <td><img src="<?php echo $imgurl ?>" width="80" height="40"  ></td>
                     
-                    <td><a href="approve.php?a_id=<?php echo $row['Login_id'];?>&& ss=1"><Button type="submit" class="btn btn-primary">Accept</Button></a>
-                    <a href="approve.php?a_id=<?php echo $row['Login_id'];?>&& ss=0"><Button type="submit" class="btn btn-primary">Reject</Button></a>    
+                    <td><a href="approve.php?a_id=<?php echo $row['Login_id'];?>&& ss=1 && email=<?php echo $email;?>"><Button type="submit" class="btn btn-primary">Accept</Button></a>
+                    <a href="reject.php?s_id=<?php echo $row['Login_id'];?>&& ss=0 && email=<?php echo $email;?>"><Button type="submit" class="btn btn-primary">Reject</Button></a>    
                 </td>
                   </tr>
                   <?php } ?>
@@ -100,9 +101,9 @@ $result=mysqli_query($conn,"SELECT * FROM `signup` join login on signup.Login_id
     <!-- Main Footer -->
     <footer class="main-footer">
       <strong>Copyright &copy; 2022 <a href="#">BARELL OF BOOKS</a>.</strong>
-      All rights reserved.
+      
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.1.0
+        <b></b>
       </div>
     </footer>
   </div>
@@ -111,6 +112,44 @@ $result=mysqli_query($conn,"SELECT * FROM `signup` join login on signup.Login_id
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<!-- <script src="plugins/pdfmake/pdfmake.min.js"></script> -->
+<!-- <script src="plugins/pdfmake/vfs_fonts.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script> -->
+<!-- <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script> -->
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <?php include 'db.php'; ?>
 </body>
 </html>
